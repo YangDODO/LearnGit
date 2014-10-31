@@ -1,0 +1,41 @@
+安装Git
+	msysgit是Windows版的Git，从http://msysgit.github.io/下载，然后按默认选项安装即可。
+	安装完成后，在开始菜单里找到“Git”->“Git Bash”，蹦出一个类似命令行窗口的东西，就说明Git安装成功！
+	
+	安装完成后，还需要最后一步设置，在命令行输入：
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "email@example.com"
+	注意git config命令的--global参数，用了这个参数，表示你这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
+
+创建版本库 
+	版本库又名仓库，英文名repository，你可以简单理解成一个目录，这个目录里面的所有文件都可以被Git管理起来，
+	每个文件的修改、删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻可以“还原”。
+	
+	首先，选择一个合适的地方，创建一个空目录：
+		$ mkdir learngit
+		$ cd learngit
+		$ pwd   pwd命令用于显示当前目录
+	第二步，通过git init命令把这个目录变成Git可以管理的仓库：
+		$ git init
+		Initialized empty Git repository in /Users/michael/learngit/.git/
+	瞬间Git就把仓库建好了，而且告诉你是一个空的仓库（empty Git repository）
+
+添加文件到Git仓库，分两步：
+	$ git add file1.txt
+	$ git add file2.txt
+	$ git add file3.txt
+	$ git commit -m "add 3 files."
+	
+	第一步，使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+	第二步，使用命令git commit，完成。
+
+使用git status命令查看文件是否有改动。
+使用git diff可以查看修改内容。
+版本控制系统肯定有某个命令可以告诉我们历史记录，在Git中，我们用git log命令查看。如果嫌输出信息太多，看得眼花缭乱的，可以试试加上 --pretty=oneline参数。
+
+版本回退 $ git reset --hard HEAD^
+HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，使用命令git reset --hard commit_id。
+穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
+
+如果不add到暂存区，那就不会加入到commit中。
